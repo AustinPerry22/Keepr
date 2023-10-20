@@ -10,7 +10,7 @@ CREATE TABLE
 
 CREATE TABLE
     IF NOT EXISTS keeps(
-        id INT NOT NULL PRIMARY KEY,
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,
         description VARCHAR(1000) NOT NULL,
         img VARCHAR(2500) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE
 
 CREATE TABLE
     IF NOT EXISTS vaults(
-        id INT NOT NULL PRIMARY KEY,
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
         name VARCHAR(255) NOT NULL,
         description VARCHAR(1000) NOT NULL,
         img VARCHAR(2500) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE
 
 CREATE TABLE
     IF NOT EXISTS vaultKeeps(
-        id INT NOT NULL PRIMARY KEY,
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
         creatorId VARCHAR(255) NOT NULL,
         vaultId INT NOT NULL,
         keepId INT NOT NULL,
@@ -41,4 +41,4 @@ CREATE TABLE
         FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE
     ) default charset utf8mb4;
 
-DROP TABLE vaults 
+DROP TABLE keeps;
