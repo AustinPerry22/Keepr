@@ -18,5 +18,54 @@ namespace Final.Controllers
             _auth0 = auth0;
             _vaultsService = vaultsService;
         }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult<Vault>> CreateVault([FromBody] Vault vaultData)
+        {
+            try
+            {
+                Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+                vaultData.creatorId = userInfo.Id;
+                Vault vault = _vaultsService.CreateVault(vaultData);
+                return Ok(vault);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("{vaultId}")]
+        public async Task<ActionResult<Vault>> GetVaultById(int vaultId)
+        {
+            try
+            {
+                Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+                Vault vault = _vaultsService.GetVaultById(vaultId, userInfo?.Id);
+                return Ok(vault);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpPut("{vaultId}")]
+        public async Task<ActionResult<Vault>> EditVault([FromBody] Vault vaultData, int vaultId)
+        {
+            try
+            {
+                Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+                vaultData.creatorId = userInfo.Id;
+                Vault vault = _vaultsService.EditVault(vaultData, vaultId);
+                return Ok(vault);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
