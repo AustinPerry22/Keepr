@@ -12,11 +12,13 @@ namespace Final.Controllers
     {
         private readonly Auth0Provider _auth0;
         private readonly VaultsService _vaultsService;
+        private readonly VaultKeepsService _vaultKeepsService;
 
-        public VaultsController(Auth0Provider auth0, VaultsService vaultsService)
+        public VaultsController(Auth0Provider auth0, VaultsService vaultsService, VaultKeepsService vaultKeepsService)
         {
             _auth0 = auth0;
             _vaultsService = vaultsService;
+            _vaultKeepsService = vaultKeepsService;
         }
 
         [Authorize]
@@ -82,6 +84,22 @@ namespace Final.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
+
+        [HttpGet("{vaultId}/keeps")]
+        public async Task<ActionResult<List<KeepViewModel>>> GetKeepsInVault(int vaultId)
+        {
+            try
+            {
+                Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+                List<KeepViewModel> keeps = _vaultKeepsService.GetKeepsInVault(vaultId, userInfo.Id);
+                return Ok(keeps);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
         }
     }
 }

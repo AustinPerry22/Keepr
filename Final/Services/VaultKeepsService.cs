@@ -1,4 +1,5 @@
 
+
 namespace Final.Services;
 public class VaultKeepsService
 {
@@ -16,5 +17,11 @@ public class VaultKeepsService
         if (vault.creatorId != vaultKeepData.creatorId) throw new Exception("not your vault");
         VaultKeep vaultKeep = _repo.CreateVaultKeep(vaultKeepData);
         return vaultKeep;
+    }
+
+    internal List<KeepViewModel> GetKeepsInVault(int vaultId, string userId)
+    {
+        List<KeepViewModel> keeps = _repo.GetKeepsInVault(vaultId, userId);
+        return keeps;
     }
 }
