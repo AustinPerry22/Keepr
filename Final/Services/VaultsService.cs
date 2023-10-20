@@ -35,4 +35,11 @@ public class VaultsService
         return ogVault;
 
     }
+
+    internal void DeleteVault(int vaultId, string userId)
+    {
+        Vault vaultToCheck = this.GetVaultById(vaultId, userId);
+        if (userId != vaultToCheck.creatorId) throw new Exception("Not your vault");
+        _repo.DeleteVault(vaultId);
+    }
 }

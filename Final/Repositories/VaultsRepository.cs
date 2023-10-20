@@ -1,6 +1,7 @@
 
 
 
+
 namespace Final.Repositories;
 public class VaultsRepository
 {
@@ -64,5 +65,14 @@ public class VaultsRepository
         WHERE id = @id
         ;";
         _db.Execute(sql, ogVault);
+    }
+
+    internal void DeleteVault(int vaultId)
+    {
+        string sql = @"
+        DELETE FROM vaults
+        WHERE id = @vaultId
+        ;";
+        _db.Execute(sql, new { vaultId });
     }
 }

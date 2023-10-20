@@ -67,5 +67,21 @@ namespace Final.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [Authorize]
+        [HttpDelete("{vaultId}")]
+        public async Task<ActionResult<string>> DeleteVault(int vaultId)
+        {
+            try
+            {
+                Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+                _vaultsService.DeleteVault(vaultId, userInfo.Id);
+                return Ok("Vault Deleted");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
