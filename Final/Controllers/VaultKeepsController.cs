@@ -12,5 +12,22 @@ namespace Final.Controllers
             _auth0 = auth0;
             _vaultKeepsService = vaultKeepsService;
         }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult<VaultKeep>> CreateVaultKeep([FromBody] VaultKeep vaultKeepData)
+        {
+            try
+            {
+                Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+                vaultKeepData.creatorId = userInfo.Id;
+                VaultKeep vaultKeep = _vaultKeepsService.CreateVaultKeep(vaultKeepData);
+                return Ok(vaultKeep);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
