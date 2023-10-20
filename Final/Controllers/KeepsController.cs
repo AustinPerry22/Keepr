@@ -63,5 +63,38 @@ namespace Final.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [Authorize]
+        [HttpPut("{keepId}")]
+        public async Task<ActionResult<Keep>> UpdateKeep([FromBody] Keep keepData, int keepId)
+        {
+            try
+            {
+                Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+                keepData.creatorId = userInfo.Id;
+                Keep keep = _keepsService.UpdateKeep(keepData, keepId);
+                return Ok(keep);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpDelete("{keepId}")]
+        public async Task<ActionResult<string>> DeleteKeep(int keepId)
+        {
+            try
+            {
+                Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+                _keepsService.DeleteKeep(keepId, userInfo.Id);
+                return Ok("Deleted the keep with id of " + keepId);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

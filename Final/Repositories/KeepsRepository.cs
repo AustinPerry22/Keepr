@@ -1,6 +1,8 @@
 
 
 
+
+
 namespace Final.Repositories;
 public class KeepsRepository
 {
@@ -70,5 +72,26 @@ public class KeepsRepository
         return newKeep;
     }
 
+    internal void UpdateKeep(Keep keepData)
+    {
+        string sql = @"
+        UPDATE keeps
+        SET
+        name = @name,
+        description = @description,
+        img = @img,
+        views = @views
+        WHERE id = @id
+        ;";
+        _db.Execute(sql, keepData);
+    }
 
+    internal void DeleteKeep(int keepId)
+    {
+        string sql = @"
+        DELETE FROM keeps
+        WHERE id = @keepId
+        ;";
+        _db.Execute(sql, new { keepId });
+    }
 }
