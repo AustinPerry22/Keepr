@@ -8,5 +8,6 @@ public class Keep
     public string description { get; set; }
     public string img { get; set; }
     public int views { get; set; }
+    public int kept { get; set; }
     public Account creator { get; set; }
 }

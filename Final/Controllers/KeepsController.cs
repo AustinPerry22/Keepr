@@ -33,6 +33,19 @@ namespace Final.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [HttpGet("{keepId}")]
+        public ActionResult<Keep> GetKeepById(int keepId)
+        {
+            try
+            {
+                Keep keep = _keepsService.GetKeepById(keepId);
+                return Ok(keep);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
         [Authorize]
         [HttpPost]

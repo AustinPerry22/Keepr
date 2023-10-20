@@ -1,5 +1,6 @@
 
 
+
 namespace Final.Services;
 
 public class KeepsService
@@ -18,11 +19,18 @@ public class KeepsService
         return keeps;
     }
 
+    internal Keep GetKeepById(int keepId)
+    {
+        Keep keep = _repo.GetKeepById(keepId);
+        return keep;
+    }
     internal Keep CreateKeep(Keep keepData)
     {
         Keep keep = _repo.CreateKeep(keepData);
         return keep;
     }
+
+
     // INTERNALS
 
 }
