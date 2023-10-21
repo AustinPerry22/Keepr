@@ -92,7 +92,7 @@ namespace Final.Controllers
             try
             {
                 Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
-                List<KeepViewModel> keeps = _vaultKeepsService.GetKeepsInVault(vaultId, userInfo.Id);
+                List<KeepViewModel> keeps = _vaultKeepsService.GetKeepsInVault(vaultId, userInfo?.Id);
                 return Ok(keeps);
             }
             catch (Exception e)

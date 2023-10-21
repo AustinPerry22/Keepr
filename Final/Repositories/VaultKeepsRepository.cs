@@ -27,7 +27,6 @@ public class VaultKeepsRepository
         return vaultKeep;
     }
 
-    // ANCHOR All results include Relationship Id vaultKeepId | AssertionError: Not All Keeps returned with vaultKeepId, be sure to return VaultKeepViewModels: expected false to deeply equal true
     internal List<KeepViewModel> GetKeepsInVault(int vaultId, string userId)
     {
         string sql = @"
@@ -43,6 +42,7 @@ public class VaultKeepsRepository
         List<KeepViewModel> keeps = _db.Query<VaultKeep, KeepViewModel, Account, KeepViewModel>(sql, (vaultkeep, keepmodel, account) =>
         {
             keepmodel.creator = account;
+            keepmodel.vaultKeepId = vaultkeep.id;
             return keepmodel;
         }, new { vaultId }).ToList();
 

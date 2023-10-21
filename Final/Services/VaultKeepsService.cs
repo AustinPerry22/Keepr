@@ -21,6 +21,8 @@ public class VaultKeepsService
 
     internal List<KeepViewModel> GetKeepsInVault(int vaultId, string userId)
     {
+        // throws execption if vault is private.
+        Vault vault = _vaultsService.GetVaultById(vaultId, userId);
         List<KeepViewModel> keeps = _repo.GetKeepsInVault(vaultId, userId);
         return keeps;
     }

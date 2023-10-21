@@ -14,5 +14,6 @@ public class Keep
 
 public class KeepViewModel : Keep
 {
-    public int vaultId { get; set; }
+    public int vaultKeepId { get; set; }
+    public Boolean isPrivate { get; set; }
 }
