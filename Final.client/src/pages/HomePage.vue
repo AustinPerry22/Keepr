@@ -3,16 +3,14 @@
     <section class="row">
       <div class="col-12">
         <div class="masonry-container">
-          <div v-for="keep in keeps" :key="keep.id">
-
-            <img  :src="keep.img" alt="" class="img-fluid">
+          <div v-for="keep in keeps" :key="keep.id" class="position-relative">
+            <KeepCard :keep="keep"/>
           </div>
         </div>
 
       </div>
     </section>
   </div>
-  {{ keeps }}
 </template>
 
 <script>
@@ -20,33 +18,33 @@ import {AppState} from "../AppState"
 import { computed, onMounted } from 'vue';
 import Pop from '../utils/Pop';
 import {keepsService} from "../services/KeepsService"
+import KeepCard from "../components/KeepCard.vue";
 
 export default {
-  setup() {
-    onMounted(()=> getAllKeeps())
-    async function getAllKeeps()
-    {
-      try {
-        await keepsService.getAllKeeps()
-      } catch (error) {
-        Pop.error(error)
-      }
-    }
-    return {
-      keeps: computed(()=> AppState.allKeeps)
-    }
-  }
+    setup() {
+        onMounted(() => getAllKeeps());
+        async function getAllKeeps() {
+            try {
+                await keepsService.getAllKeeps();
+            }
+            catch (error) {
+                Pop.error(error);
+            }
+        }
+        return {
+            keeps: computed(() => AppState.allKeeps)
+        };
+    },
+    components: { KeepCard }
 }
 </script>
 
 <style scoped lang="scss">
 .masonry-container{
   $gap: 1.25em;
-  columns: 200px;
+  columns: 15dvw;
   column-gap: $gap;
   div{
-    border-radius: 10px;
-    width: 100%;
     margin-bottom: $gap;
   }
 }
