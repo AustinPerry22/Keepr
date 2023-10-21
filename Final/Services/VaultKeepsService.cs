@@ -19,11 +19,17 @@ public class VaultKeepsService
         return vaultKeep;
     }
 
+
     internal List<KeepViewModel> GetKeepsInVault(int vaultId, string userId)
     {
         // throws execption if vault is private.
         Vault vault = _vaultsService.GetVaultById(vaultId, userId);
         List<KeepViewModel> keeps = _repo.GetKeepsInVault(vaultId, userId);
         return keeps;
+    }
+
+    internal void DeleteVaultKeep(int vaultKeepId)
+    {
+        _repo.DeleteVaultKeep(vaultKeepId);
     }
 }

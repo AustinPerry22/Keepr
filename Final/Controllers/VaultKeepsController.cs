@@ -29,5 +29,19 @@ namespace Final.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [Authorize]
+        [HttpDelete("{vaultKeepId}")]
+        public ActionResult<string> DeleteVaultKeep(int vaultKeepId)
+        {
+            try
+            {
+                _vaultKeepsService.DeleteVaultKeep(vaultKeepId);
+                return Ok("VaultKeep deleted with id of " + vaultKeepId);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

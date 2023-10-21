@@ -1,5 +1,7 @@
 
 
+
+
 namespace Final.Repositories;
 public class VaultKeepsRepository
 {
@@ -47,5 +49,14 @@ public class VaultKeepsRepository
         }, new { vaultId }).ToList();
 
         return keeps;
+    }
+
+    internal void DeleteVaultKeep(int vaultKeepId)
+    {
+        string sql = @"
+        DELETE FROM vaultKeeps
+        WHERE id = @vaultKeepId
+        ;";
+        _db.Execute(sql, new { vaultKeepId });
     }
 }
