@@ -44,10 +44,13 @@ public class VaultsService
         _repo.DeleteVault(vaultId);
     }
 
-    internal List<Vault> GetVaultsByProfile(string profileId)
+    internal List<Vault> GetVaultsByProfile(string profileId, bool myVault = false)
     {
         List<Vault> vaults = _repo.GetVaultsByProfile(profileId);
-        vaults = vaults.FindAll(vault => vault.isPrivate == false);
+        if (myVault == false)
+        {
+            vaults = vaults.FindAll(vault => vault.isPrivate == false);
+        }
         return vaults;
     }
 }
