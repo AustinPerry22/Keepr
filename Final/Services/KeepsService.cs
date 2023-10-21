@@ -16,12 +16,17 @@ public class KeepsService
         return keeps;
     }
 
-    internal Keep GetKeepById(int keepId)
+    internal Keep GetKeepById(int keepId, bool increaseView = false)
     {
         Keep keep = _repo.GetKeepById(keepId);
         if (keep == null) throw new Exception("no keep at id of " + keepId);
+        if (increaseView)
+        {
+            this.increaseView(keep);
+        }
         return keep;
     }
+
     internal Keep CreateKeep(Keep keepData)
     {
         Keep keep = _repo.CreateKeep(keepData);
@@ -50,5 +55,11 @@ public class KeepsService
     {
         List<Keep> keeps = _repo.GetKeepsByProfile(profileId);
         return keeps;
+    }
+
+    private void increaseView(Keep keep)
+    {
+        keep.views++;
+        _repo.UpdateKeep(keep);
     }
 }
