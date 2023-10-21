@@ -5,13 +5,14 @@ namespace Final.Controllers
     public class ProfilesController : ControllerBase
     {
         private readonly ProfilesService _profilesService;
-
         private readonly KeepsService _keepsService;
+        private readonly VaultsService _vaultsService;
         private readonly Auth0Provider _auth0;
-        public ProfilesController(ProfilesService profilesService, KeepsService keepsService, Auth0Provider auth0)
+        public ProfilesController(ProfilesService profilesService, KeepsService keepsService, VaultsService vaultsService, Auth0Provider auth0)
         {
             _profilesService = profilesService;
             _keepsService = keepsService;
+            _vaultsService = vaultsService;
             _auth0 = auth0;
         }
 
@@ -36,6 +37,20 @@ namespace Final.Controllers
             {
                 List<Keep> keeps = _keepsService.GetKeepsByProfile(profileId);
                 return keeps;
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("{profileId}/vaults")]
+        public ActionResult<List<Vault>> GetVaultsByProfile(string profileId)
+        {
+            try
+            {
+                List<Vault> vaults = _vaultsService.GetVaultsByProfile(profileId);
+                return Ok(vaults);
             }
             catch (Exception e)
             {

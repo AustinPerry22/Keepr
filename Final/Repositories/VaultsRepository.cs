@@ -1,7 +1,3 @@
-
-
-
-
 namespace Final.Repositories;
 public class VaultsRepository
 {
@@ -74,5 +70,23 @@ public class VaultsRepository
         WHERE id = @vaultId
         ;";
         _db.Execute(sql, new { vaultId });
+    }
+
+    internal List<Vault> GetVaultsByProfile(string profileId)
+    {
+        string sql = @"
+        SELECT
+        val.*,
+        acc.*
+        FROM vaults val
+        JOIN accounts acc ON acc.id = val.creatorId
+        WHERE val.creatorId = @profileId
+        ;";
+        List<Vault> vaults = _db.Query<Vault, Account, Vault>(sql, (vault, account) =>
+        {
+            vault.creator = account;
+            return vault;
+        }, new { profileId }).ToList();
+        return vaults;
     }
 }

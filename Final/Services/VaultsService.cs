@@ -1,5 +1,6 @@
 
 
+
 namespace Final.Services;
 public class VaultsService
 {
@@ -41,5 +42,12 @@ public class VaultsService
         Vault vaultToCheck = this.GetVaultById(vaultId, userId);
         if (userId != vaultToCheck.creatorId) throw new Exception("Not your vault");
         _repo.DeleteVault(vaultId);
+    }
+
+    internal List<Vault> GetVaultsByProfile(string profileId)
+    {
+        List<Vault> vaults = _repo.GetVaultsByProfile(profileId);
+        vaults = vaults.FindAll(vault => vault.isPrivate == false);
+        return vaults;
     }
 }
