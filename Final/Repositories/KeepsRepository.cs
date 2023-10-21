@@ -1,3 +1,4 @@
+
 namespace Final.Repositories;
 public class KeepsRepository
 {
@@ -88,5 +89,17 @@ public class KeepsRepository
         WHERE id = @keepId
         ;";
         _db.Execute(sql, new { keepId });
+    }
+
+    internal List<Keep> GetKeepsByProfile(string profileId)
+    {
+        string sql = @"
+        SELECT
+        *
+        FROM keeps
+        WHERE creatorId = @profileId
+        ;";
+        List<Keep> keeps = _db.Query<Keep>(sql, new { profileId }).ToList();
+        return keeps;
     }
 }

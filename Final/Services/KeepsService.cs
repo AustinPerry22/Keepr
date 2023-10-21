@@ -1,7 +1,3 @@
-
-
-
-
 namespace Final.Services;
 
 public class KeepsService
@@ -48,5 +44,11 @@ public class KeepsService
         Keep keepToCheck = this.GetKeepById(keepId);
         if (userId != keepToCheck.creatorId) throw new Exception("Not your keep");
         _repo.DeleteKeep(keepId);
+    }
+
+    internal List<Keep> GetKeepsByProfile(string profileId)
+    {
+        List<Keep> keeps = _repo.GetKeepsByProfile(profileId);
+        return keeps;
     }
 }
