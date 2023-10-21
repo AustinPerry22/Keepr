@@ -31,11 +31,12 @@ namespace Final.Controllers
         }
         [Authorize]
         [HttpDelete("{vaultKeepId}")]
-        public ActionResult<string> DeleteVaultKeep(int vaultKeepId)
+        public async Task<ActionResult<string>> DeleteVaultKeep(int vaultKeepId)
         {
             try
             {
-                _vaultKeepsService.DeleteVaultKeep(vaultKeepId);
+                Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+                _vaultKeepsService.DeleteVaultKeep(vaultKeepId, userInfo.Id);
                 return Ok("VaultKeep deleted with id of " + vaultKeepId);
             }
             catch (Exception e)

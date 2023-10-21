@@ -28,8 +28,19 @@ public class VaultKeepsService
         return keeps;
     }
 
-    internal void DeleteVaultKeep(int vaultKeepId)
+    internal void DeleteVaultKeep(int vaultKeepId, string userId)
     {
+        VaultKeep vaultKeep = this.GetVaultKeepById(vaultKeepId);
+        if (vaultKeep.creatorId != userId) throw new Exception("not your vault keep!");
         _repo.DeleteVaultKeep(vaultKeepId);
     }
+
+    // Not called from controller
+    private VaultKeep GetVaultKeepById(int vaultKeepId)
+    {
+        VaultKeep vaultKeep = _repo.GetVaultKeepById(vaultKeepId);
+        return vaultKeep;
+    }
+
+
 }

@@ -2,6 +2,7 @@
 
 
 
+
 namespace Final.Repositories;
 public class VaultKeepsRepository
 {
@@ -58,5 +59,15 @@ public class VaultKeepsRepository
         WHERE id = @vaultKeepId
         ;";
         _db.Execute(sql, new { vaultKeepId });
+    }
+
+    internal VaultKeep GetVaultKeepById(int vaultKeepId)
+    {
+        string sql = @"
+        SELECT * FROM vaultKeeps
+        WHERE id = @vaultKeepId
+        ;";
+        VaultKeep vaultKeep = _db.Query<VaultKeep>(sql, new { vaultKeepId }).FirstOrDefault();
+        return vaultKeep;
     }
 }
