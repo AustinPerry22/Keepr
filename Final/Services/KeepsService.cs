@@ -57,6 +57,20 @@ public class KeepsService
         return keeps;
     }
 
+    internal void increaseKept(int keepId)
+    {
+        Keep keep = this.GetKeepById(keepId);
+        keep.kept++;
+        _repo.UpdateKeep(keep);
+    }
+
+    internal void decreaseKept(int keepId)
+    {
+        Keep keep = this.GetKeepById(keepId);
+        keep.kept--;
+        _repo.UpdateKeep(keep);
+    }
+
     private void increaseView(Keep keep)
     {
         keep.views++;

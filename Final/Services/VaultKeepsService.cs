@@ -5,10 +5,12 @@ public class VaultKeepsService
 {
     private readonly VaultKeepsRepository _repo;
     private readonly VaultsService _vaultsService;
-    public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultsService)
+    private readonly KeepsService _keepsService;
+    public VaultKeepsService(VaultKeepsRepository repo, VaultsService vaultsService, KeepsService keepsService)
     {
         _repo = repo;
         _vaultsService = vaultsService;
+        _keepsService = keepsService;
     }
 
     internal VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
@@ -16,6 +18,7 @@ public class VaultKeepsService
         Vault vault = _vaultsService.GetVaultById(vaultKeepData.vaultId, vaultKeepData.creatorId);
         if (vault.creatorId != vaultKeepData.creatorId) throw new Exception("not your vault");
         VaultKeep vaultKeep = _repo.CreateVaultKeep(vaultKeepData);
+        _keepsService.increaseKept(vaultKeepData.keepId);
         return vaultKeep;
     }
 
@@ -33,6 +36,7 @@ public class VaultKeepsService
         VaultKeep vaultKeep = this.GetVaultKeepById(vaultKeepId);
         if (vaultKeep.creatorId != userId) throw new Exception("not your vault keep!");
         _repo.DeleteVaultKeep(vaultKeepId);
+        _keepsService.decreaseKept(vaultKeep.keepId);
     }
 
     // Not called from controller
