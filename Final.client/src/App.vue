@@ -4,6 +4,11 @@
   </header>
   <main>
     <router-view />
+    <ModalWrapper id="active-keep">
+        <template #body>
+          <KeepDetails/>
+        </template>
+    </ModalWrapper>
   </main>
 </template>
 
@@ -11,6 +16,7 @@
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import KeepDetails from './components/KeepDetails.vue'
 
 export default {
   setup() {
@@ -18,7 +24,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Navbar, KeepDetails }
 }
 </script>
 <style lang="scss">

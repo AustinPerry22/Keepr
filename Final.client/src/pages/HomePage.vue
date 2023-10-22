@@ -48,4 +48,5 @@ export default {
     margin-bottom: $gap;
   }
 }
+
 </style>

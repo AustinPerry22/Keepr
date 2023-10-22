@@ -1,5 +1,5 @@
 <template>
-    <img :src="keep.img" alt="" class="img-fluid cover-img">
+    <img @click="openKeep(keep.id)" :src="keep.img" alt="" class="img-fluid cover-img selectable">
     <h5 class="title">{{ keep.name }}</h5>
     <!-- router link here -->
     <img :src="keep.creator.picture" alt="" class="profile-pic">
@@ -10,10 +10,27 @@
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import { Keep } from '../models/Keep';
+import { keepsService } from '../services/KeepsService';
+import { Modal } from 'bootstrap';
+import Pop from '../utils/Pop';
 export default {
     props: {keep: {type: Keep, required: true}},
     setup(props){
-    return {  }
+    return { 
+        async openKeep(keepId)
+        {
+            try{
+                AppState.activeKeep = {}
+                await keepsService.getKeepById(keepId)
+                Modal.getOrCreateInstance('#active-keep').show()
+            }
+            catch(error)
+            {
+                Pop.error(error)
+            }
+            
+        }
+     }
     }
 };
 </script>
