@@ -2,8 +2,10 @@
     <div class="modal fade" :id="id" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
-        <div class="modal-body text-dark">
+        <div class="modal-header">
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-dark">
             <slot name="body">
 
             </slot>
@@ -26,5 +28,11 @@ setup() {
 
 
 <style lang="scss" scoped>
-
+.modal-header{
+color: white;
+background-color: #527360;
+}
+.modal-body{
+    background-color: white;
+}
 </style>

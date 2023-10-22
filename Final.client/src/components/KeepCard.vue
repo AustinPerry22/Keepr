@@ -56,6 +56,5 @@ export default {
     height: 6dvh;
     border-radius: 5rem;
     filter: drop-shadow(.25rem 0.25rem .1rem rgba(0, 0, 0, 0.397))
-
 }
 </style>
