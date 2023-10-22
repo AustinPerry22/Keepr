@@ -1,8 +1,10 @@
 <template>
     <img @click="openKeep(keep.id)" :src="keep.img" alt="" class="img-fluid cover-img selectable">
     <h5 class="title">{{ keep.name }}</h5>
-    <!-- router link here -->
-    <img :src="keep.creator.picture" alt="" class="profile-pic">
+    <router-link :to="{name: 'Profile', params: {profileId: keep.creator.id}}">
+        <img :src="keep.creator.picture" alt="" class="profile-pic">
+    </router-link>
+    
 </template>
 
 
@@ -14,24 +16,21 @@ import { keepsService } from '../services/KeepsService';
 import { Modal } from 'bootstrap';
 import Pop from '../utils/Pop';
 export default {
-    props: {keep: {type: Keep, required: true}},
-    setup(props){
-    return { 
-        async openKeep(keepId)
-        {
-            try{
-                AppState.activeKeep = {}
-                await keepsService.getKeepById(keepId)
-                Modal.getOrCreateInstance('#active-keep').show()
+    props: { keep: { type: Keep, required: true } },
+    setup() {
+        return {
+            async openKeep(keepId) {
+                try {
+                    AppState.activeKeep = {};
+                    await keepsService.getKeepById(keepId);
+                    Modal.getOrCreateInstance('#active-keep').show();
+                }
+                catch (error) {
+                    Pop.error(error);
+                }
             }
-            catch(error)
-            {
-                Pop.error(error)
-            }
-            
-        }
-     }
-    }
+        };
+    },
 };
 </script>
 

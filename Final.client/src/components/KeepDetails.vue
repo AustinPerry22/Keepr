@@ -1,5 +1,5 @@
 <template>
-    <section class="row active-keep">
+    <section v-if="keep.id" class="row active-keep">
         <div class="col-6 bg-keep-img">
         </div>
         <div class="col-6 d-flex flex-column justify-content-between">
@@ -21,8 +21,9 @@
                     dropdown and save
                 </div>
                 <div class="col-6 d-flex">
-                    <!-- TODO add routerLink to picture -->
-                    <img :src="keep.creator.picture" alt="" class="profile-pic">
+                    <router-link :to="{name: 'Profile', params: {profileId: keep.creator.id}}">
+                        <img :src="keep.creator.picture" alt="" class="profile-pic" data-bs-toggle="modal" data-bs-target="#active-keep">
+                    </router-link>
                     <p class="pt-3">{{ keep.creator.name }}</p>
                 </div>
             </section>
