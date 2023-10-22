@@ -1,3 +1,5 @@
+-- Active: 1696955322374@@SG-Sandbox-7899-mysql-master.servers.mongodirector.com@3306@final
+
 CREATE TABLE
     IF NOT EXISTS accounts(
         id VARCHAR(255) NOT NULL primary key COMMENT 'primary key',
@@ -5,7 +7,8 @@ CREATE TABLE
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
         name varchar(255) COMMENT 'User Name',
         email varchar(255) COMMENT 'User Email',
-        picture varchar(255) COMMENT 'User Picture'
+        picture varchar(255) COMMENT 'User Picture',
+        coverImg VARCHAR(2000)
     ) default charset utf8mb4 COMMENT '';
 
 CREATE TABLE
