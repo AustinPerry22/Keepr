@@ -1,4 +1,11 @@
 <template>
+    <div class="container-fluid">
+        <section class="row justify-content-center position-relative">
+            <div class="col-8 bg-cover text-center">
+                <img :src="profile.picture" alt="" class="profile-pic">
+            </div>
+        </section>
+    </div>
     {{ profile }}
     {{ vaults }}
     {{ keeps }}
@@ -42,7 +49,6 @@ export default {
         async function getKeepsByProfile()
         {
             try {
-                logger.log("getting keeps by profile")
                 await keepsService.getKeepsByProfile(route.params.profileId)
             } catch (error) {
                 Pop.error(error)
@@ -51,7 +57,8 @@ export default {
     return { 
         profile: computed(()=> AppState.activeProfile),
         vaults: computed(()=> AppState.activeVaults),
-        keeps: computed(()=> AppState.profileKeeps)
+        keeps: computed(()=> AppState.profileKeeps),
+        coverImg: computed(()=> `url('${AppState.activeProfile.coverImg}')`)
      }
     }
 };
@@ -59,5 +66,19 @@ export default {
 
 
 <style lang="scss" scoped>
-
+.bg-cover{
+    height: 35dvh;
+    border-radius: 1rem;
+    background-image: v-bind(coverImg);
+    background-position: center;
+    background-size: cover;
+}
+.profile-pic{
+    position: absolute;
+    bottom: -4.5dvh;
+    left: 47.5dvw;
+    height: 5dvw;
+    border-radius: 5rem;
+    filter: drop-shadow(.25rem 0.25rem .1rem rgba(0, 0, 0, 0.397))
+}
 </style>
