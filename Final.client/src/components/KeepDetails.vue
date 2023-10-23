@@ -2,13 +2,16 @@
     <section v-if="keep.id" class="row active-keep">
         <div class="col-6 bg-keep-img">
         </div>
-        <div class="col-6 d-flex flex-column justify-content-between">
+        <div class="col-6 d-flex flex-column justify-content-between"> 
             <section class="row justify-content-center text-center">
                 <div class="col-3">
                     <p><i class="mdi mdi-eye"></i> {{ keep.views }}</p>
                 </div>
                 <div class="col-3">
                     <p><i class="mdi mdi-alpha-k-box-outline"></i> {{ keep.kept }}</p>
+                </div>
+                <div v-if="keep.creatorId==accountId" class="col-6 text-end">
+                    <button @click="deleteKeep()" class="btn btn-danger">Delete Keep</button>
                 </div>
             </section>
             <section class="row">
@@ -34,8 +37,13 @@
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
 import { router } from '../router';
+import Pop from '../utils/Pop';
+import { Modal } from 'bootstrap';
+import { keepsService } from '../services/KeepsService';
+import { useRoute } from 'vue-router';
 export default {
     setup(){
+        const route = useRoute()
     return { 
         accountId: computed(()=> AppState.account.id),
         keep: computed(()=> AppState.activeKeep),
@@ -48,6 +56,18 @@ export default {
             else
             {
                 router.push({name: 'Profile', params: {profileId: this.keep.creatorId}})
+            }
+        },
+        async deleteKeep(){
+            try {
+                if(await Pop.confirm("Are you sure you want to delete this keep?"))
+                {
+                    Modal.getOrCreateInstance('#active-keep').hide()
+                    await keepsService.deleteKeep(this.keep.id, route.name)
+                    Pop.success("Keep Deleted")
+                }
+            } catch (error) {
+                Pop.error(error)
             }
         }
      }

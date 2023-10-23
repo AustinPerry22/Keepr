@@ -41,5 +41,20 @@ class KeepsService
         if(route == "Home") AppState.allKeeps.push(AppState.activeKeep)
         if(route == "Account") AppState.myKeeps.push(AppState.activeKeep)
     }
+
+    async deleteKeep(keepId, route = null)
+    {
+        AppState.activeKeep = {}
+        await api.delete('api/keeps/'+keepId)
+        if(route == "Home") {
+            const keepIndex = AppState.allKeeps.findIndex(keep=> keep.id == keepId)
+            AppState.allKeeps.splice(keepIndex, 1)
+        }
+        if(route == "Account")
+        {
+            const keepIndex = AppState.myKeeps.findIndex(keep=> keep.id == keepId)
+            AppState.myKeeps.splice(keepIndex, 1)
+        }
+    }
 }
 export const keepsService = new KeepsService()
