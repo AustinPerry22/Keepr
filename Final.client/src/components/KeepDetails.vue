@@ -1,8 +1,8 @@
 <template>
     <section v-if="keep.id" class="row active-keep">
-        <div class="col-6 bg-keep-img">
+        <div class="col-12 col-md-6 bg-keep-img">
         </div>
-        <div class="col-6 d-flex flex-column justify-content-between"> 
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-between"> 
             <section class="row justify-content-center text-center">
                 <div class="col-3">
                     <p><i class="mdi mdi-eye"></i> {{ keep.views }}</p>

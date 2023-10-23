@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid">
-    <section class="row">
+    <section class="row bottom-border mb-3">
       <div class="col-4 d-flex">
         <router-link :to="{name: 'Home'}">
-          <button class="btn btn-light">Home</button>
+          <button class="btn btn-info">Home</button>
         </router-link>
         <div v-if="user.isAuthenticated" class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="col-4 text-center">
-        LOGO
+        <img src="../assets/img/logo.png" alt="" class="logo">
       </div>
       <div class="col-4 text-end">
         <Login/>
@@ -40,5 +40,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.bottom-border{
+  border-bottom: solid rgba(65, 60, 60, 0.788) .5dvh;
+}
+.logo{
+  height: 6dvh;
+}
 </style>

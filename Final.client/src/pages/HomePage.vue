@@ -48,5 +48,10 @@ export default {
     margin-bottom: $gap;
   }
 }
+@media screen and (max-width: 768px){
+ .masonry-container{
+  columns: 35dvw;
+ }
+}
 
 </style>
