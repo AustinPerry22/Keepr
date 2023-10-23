@@ -32,7 +32,7 @@ export default {
             }
         }
         return {
-            keeps: computed(() => AppState.allKeeps)
+            keeps: computed(() => AppState.keeps)
         };
     },
     components: { KeepCard }
