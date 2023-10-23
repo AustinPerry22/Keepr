@@ -76,8 +76,9 @@ export default {
 .profile-pic{
     position: absolute;
     bottom: -4.5dvh;
-    left: 47.5dvw;
-    height: 5dvw;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 10dvh;
     border-radius: 5rem;
     filter: drop-shadow(.25rem 0.25rem .1rem rgba(0, 0, 0, 0.397))
 }
