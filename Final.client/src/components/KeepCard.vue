@@ -1,7 +1,7 @@
 <template>
     <img @click="openKeep(keep.id)" :src="keep.img" alt="" class="img-fluid cover-img selectable">
     <h5 class="title">{{ keep.name }}</h5>
-    <router-link :to="{name: 'Profile', params: {profileId: keep.creator.id}}">
+    <router-link v-if="keep.creator" :to="{name: 'Profile', params: {profileId: keep.creator.id}}">
         <img :src="keep.creator.picture" alt="" class="profile-pic">
     </router-link>
     
