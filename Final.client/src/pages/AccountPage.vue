@@ -70,8 +70,8 @@ export default {
         }
       return {
         account: computed(() => AppState.account),
-        vaults: computed(() => AppState.activeVaults),
-        keeps: computed(() => AppState.keeps),
+        vaults: computed(() => AppState.myVaults),
+        keeps: computed(() => AppState.myKeeps),
         coverImg: computed(() => `url('${AppState.account.coverImg}')`)
         };
       },

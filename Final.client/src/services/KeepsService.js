@@ -7,23 +7,24 @@ class KeepsService
 {
     async getAllKeeps()
     {
-        AppState.keeps = []
+        AppState.allKeeps = []
         const res = await api.get('api/keeps')
-        AppState.keeps = res.data.map(keep=> new Keep(keep))
+        AppState.allKeeps = res.data.map(keep=> new Keep(keep))
     }
     async getKeepsByProfile(profileId)
     {
-        AppState.keeps = []
+        AppState.profileKeeps = []
         if(profileId == undefined) profileId = AppState.account.id
         const res = await api.get(`api/profiles/${profileId}/keeps`)
-        AppState.keeps = res.data.map(keep=> new Keep(keep))
+        AppState.profileKeeps = res.data.map(keep=> new Keep(keep))
+        if(profileId == AppState.account.id) AppState.myKeeps = AppState.profileKeeps
     }
 
     async getVaultKeeps(vaultId)
     {
-        AppState.keeps = []
+        AppState.vaultKeeps = []
         const res = await api.get(`api/vaults/${vaultId}/keeps`)
-        AppState.keeps = res.data.map(keep=> new Keep(keep))
+        AppState.vaultKeeps = res.data.map(keep=> new Keep(keep))
     }
 
     async getKeepById(keepId)
@@ -31,6 +32,14 @@ class KeepsService
         AppState.activeKeep = {}
         const res = await api.get('api/keeps/'+keepId)
         AppState.activeKeep = new Keep(res.data)
+    }
+
+    async createKeep(keepData, route = null)
+    {
+        const res = await api.post('api/keeps', keepData)
+        AppState.activeKeep = new Keep(res.data)
+        if(route == "Home") AppState.allKeeps.push(AppState.activeKeep)
+        if(route == "Account") AppState.myKeeps.push(AppState.activeKeep)
     }
 }
 export const keepsService = new KeepsService()

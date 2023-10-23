@@ -60,7 +60,7 @@ export default {
         }
     return { 
         vault: computed(()=> AppState.activeVault),
-        keeps: computed(()=> AppState.keeps),
+        keeps: computed(()=> AppState.vaultKeeps),
         vaultImg: computed(()=> `url('${AppState.activeVault.img}')`)
      }
     }

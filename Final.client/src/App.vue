@@ -9,6 +9,16 @@
           <KeepDetails/>
         </template>
     </ModalWrapper>
+    <ModalWrapper id="create-keep">
+      <template #body>
+        <KeepForm/>
+      </template>
+  </ModalWrapper>
+  <ModalWrapper id="create-vault">
+      <template #body>
+        vault make
+      </template>
+  </ModalWrapper>
   </main>
 </template>
 
@@ -17,6 +27,7 @@ import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import KeepDetails from './components/KeepDetails.vue'
+import KeepForm from './components/KeepForm.vue'
 
 export default {
   setup() {
@@ -24,7 +35,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, KeepDetails }
+  components: { Navbar, KeepDetails, KeepForm }
 }
 </script>
 <style lang="scss">

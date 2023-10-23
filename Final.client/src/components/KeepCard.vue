@@ -15,7 +15,6 @@ import { keepsService } from '../services/KeepsService';
 import { Modal } from 'bootstrap';
 import Pop from '../utils/Pop';
 import { router } from '../router';
-import { Account } from '../models/Account';
 export default {
     props: { keep: { type: Keep, required: true } },
     setup(props) {

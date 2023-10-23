@@ -81,8 +81,8 @@ export default {
         }
         return {
             profile: computed(() => AppState.activeProfile),
-            vaults: computed(() => AppState.activeVaults),
-            keeps: computed(() => AppState.keeps),
+            vaults: computed(() => AppState.profileVaults),
+            keeps: computed(() => AppState.profileKeeps),
             coverImg: computed(() => `url('${AppState.activeProfile.coverImg}')`),
         };
     },

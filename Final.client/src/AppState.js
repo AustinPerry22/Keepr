@@ -8,13 +8,21 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Account} */
   account: {},
   /**@type {Keep[]} */
-  keeps: [],
+  allKeeps: [],
+  /**@type {Keep[]} */
+  profileKeeps: [],
+  /**@type {Keep[]} */
+  vaultKeeps: [],
+  /**@type {Keep[]} */
+  myKeeps: [],
   /**@type {Keep} */
   activeKeep: {},
   /**@type {Profile} */
   activeProfile: {},
   /**@type {Vault[]} */
-  activeVaults: [],
+  profileVaults: [],
+  /**@type {Vault[]} */
+  myVaults: [],
   /**@type {Vault} */
   activeVault: {}
 })
