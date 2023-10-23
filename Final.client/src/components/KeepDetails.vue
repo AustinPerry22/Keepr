@@ -18,8 +18,8 @@
                 <h3 class="text-center">{{ keep.name }}</h3>
                 <p>{{ keep.description }}</p>
             </section>
-            <section class="row">
-                <div v-if="accountId" class="col-6">
+            <section class="row justify-content-between">
+                <div v-if="accountId" class="col-12 col-md-6 text-md-start text-center">
                     <div v-if="inMyVault">
                         <button @click="removeKeepFromVault()" class="btn btn-danger">Remove</button>
                     </div>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6 d-flex">
+                <div class="col-12 col-md-6 d-flex text-center">
                     <img @click="goToProfile()" :src="keep.creator.picture" alt="" class="profile-pic selectable" data-bs-toggle="modal" data-bs-target="#active-keep">
                     <p class="pt-3">{{ keep.creator.name }}</p>
                 </div>
@@ -115,9 +115,12 @@ export default {
 
 
 <style lang="scss" scoped>
+p{
+    overflow-x:hidden;
+}
 .active-keep
 {
-    height: 85dvh;
+    height: 77.5dvh;
 }
 .bg-keep-img
 {

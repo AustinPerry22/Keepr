@@ -11,7 +11,7 @@
             </div>
             <div class="col-12">
                 <label for="description">Keep Description</label>
-                <textarea v-model="keepData.description" type="text" class="form-control" max-length="1000" rows="15" required></textarea>
+                <textarea v-model="keepData.description" type="text" class="form-control" maxlength="1000" rows="15" required></textarea>
             </div>
             <div class="col-4 text-center mt-3">
                 <button class="btn btn-success">Create Keep</button>

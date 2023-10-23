@@ -1,8 +1,9 @@
 <template>
     <section class="row justify-content-center">
         <router-link :to="{name: 'Vault', params: {vaultId: vault.id}}">
-            <div class="col-11 bg-vault elevation-3 rounded selectable d-flex flex-column justify-content-end">
+            <div class="col-11 bg-vault elevation-3 rounded selectable d-flex flex-column justify-content-between">
                 <h5>{{ vault.name }}</h5>
+                <h5 v-if="vault.isPrivate" class="text-end me-2"><i class="mdi mdi-lock"></i></h5>
             </div>
         </router-link>
     </section>

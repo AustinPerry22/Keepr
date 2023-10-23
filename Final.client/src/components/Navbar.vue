@@ -1,11 +1,8 @@
 <template>
   <div class="container-fluid">
-    <section class="row bottom-border mb-3">
-      <div class="col-4 d-flex">
-        <router-link :to="{name: 'Home'}">
-          <button class="btn btn-info">Home</button>
-        </router-link>
-        <div v-if="user.isAuthenticated" class="dropdown">
+    <section class="row bottom-border mb--2 justify-content-between justify-content-md-start">
+      <div class="col-3 col-md-4 d-flex">
+        <div v-if="user.isAuthenticated" class="dropdown mt-2">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Create
           </button>
@@ -15,11 +12,17 @@
           </ul>
         </div>
       </div>
-      <div class="col-4 text-center">
-        <img src="../assets/img/logo.png" alt="" class="logo">
+      <div class="col-3 col-md-4 text-center">
+        <router-link :to="{name: 'Home'}">
+          <img src="../assets/img/logo.png" alt="" class="logo">
+        </router-link>
       </div>
-      <div class="col-4 text-end">
-        <Login/>
+      <div class="col-3 col-md-4 text-center">
+        <section class="row justify-content-end">
+          <div class="col-9 col-md-3 mt-2">
+            <Login/>
+          </div>
+        </section>
       </div>
     </section>
   </div>
@@ -45,5 +48,10 @@ export default {
 }
 .logo{
   height: 6dvh;
+}
+@media screen and (max-width: 768px){
+ .logo{
+  height: 9.5dvh;
+ }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <header>
-    <Navbar />
+  <header class="sticky-top">
+    <Navbar class="bg-light"/>
   </header>
   <main>
     <router-view />

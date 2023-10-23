@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
-        <section class="row justify-content-center position-relative">
-            <div class="col-8 bg-cover text-center">
+        <section class="row justify-content-center position-relative mt-2">
+            <div class="col-10 col-md-8 bg-cover text-center">
                 <img :src="profile.picture" alt="" class="profile-pic">
             </div>
         </section>
@@ -15,7 +15,7 @@
             <div class="col-10">
                 <h3>Vaults</h3>
                 <section class="row justify-content-center">
-                    <div v-for="vault in vaults" :key="vault.id" class="col-2 g-3">
+                    <div v-for="vault in vaults" :key="vault.id" class="col-md-2 col-6 g-3">
                         <VaultCard :vault="vault"/>
                     </div>
                 </section>
@@ -121,6 +121,9 @@ export default {
 @media screen and (max-width: 768px){
  .masonry-container{
   columns: 35dvw;
+ }
+ .bg-cover{
+    height: 22.5dvh;
  }
 }
 </style>

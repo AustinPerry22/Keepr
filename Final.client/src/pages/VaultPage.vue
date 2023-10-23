@@ -1,13 +1,13 @@
 <template>
     <div v-if="vault.id" class="container-fluid">
         <section class="row justify-content-center text-center mt-3">
-            <div class="col-5 bg-vault-img d-flex flex-column justify-content-end">
+            <div class="col-md-5 col-10 bg-vault-img d-flex flex-column justify-content-end">
                 <h2>{{ vault.name }}</h2>
                 <h6>by {{ vault.creator.name }}</h6>
             </div>
         </section>
-        <section v-if="vault.creatorId == accountId" class="row justify-content-end">
-            <div class="col-3 text-end">
+        <section v-if="vault.creatorId == accountId" class="row justify-content-end my-2">
+            <div class="col-6 col-md-3 text-end">
                 <button @click="deleteVault()" class="btn btn-danger">Delete Vault</button>
             </div>
         </section>

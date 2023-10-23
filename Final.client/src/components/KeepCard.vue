@@ -54,7 +54,7 @@ export default {
 }
 .title{
     position: absolute;
-    bottom: 1.75dvh;
+    top: 1dvh;
     left: 1.25dvw;
     color: white;
     filter: drop-shadow(.25rem 0.25rem .1rem rgba(0, 0, 0, 0.397))
@@ -69,4 +69,5 @@ export default {
     border-radius: 5rem;
     filter: drop-shadow(.25rem 0.25rem .1rem rgba(0, 0, 0, 0.397))
 }
+
 </style>

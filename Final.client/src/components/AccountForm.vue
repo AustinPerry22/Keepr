@@ -7,7 +7,7 @@
             </div>
             <div class="col-12">
                 <label for="img">Profile Picture</label>
-                <input v-model="accountData.picture" type="url" class="form-control" max-length="1000">
+                <input v-model="accountData.picture" type="url" class="form-control" max-length="255">
             </div>
             <div class="col-12">
                 <label for="img">Cover Picture</label>
