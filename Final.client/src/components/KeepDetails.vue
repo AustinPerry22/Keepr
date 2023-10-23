@@ -21,7 +21,7 @@
             <section class="row">
                 <div v-if="accountId" class="col-6">
                     <div v-if="inMyVault">
-                        <button>remove</button>
+                        <button @click="removeKeepFromVault()" class="btn btn-danger">Remove</button>
                     </div>
                     <div v-else>
                         <div v-if="accountId" class="dropdown">
@@ -52,6 +52,7 @@ import Pop from '../utils/Pop';
 import { Modal } from 'bootstrap';
 import { keepsService } from '../services/KeepsService';
 import { useRoute } from 'vue-router';
+import { vaultsService } from '../services/VaultsService';
 export default {
     setup(){
         const route = useRoute()
@@ -82,6 +83,15 @@ export default {
             try {
                 await keepsService.addKeepToVault(vaultId, this.keep.id)
                 Pop.success("Added The Keep To Your Vault")
+            } catch (error) {
+                Pop.error(error)
+            }
+        },
+        async removeKeepFromVault()
+        {
+            try {
+                Modal.getOrCreateInstance('#active-keep').hide()
+                await vaultsService.removeKeepFromVault(this.keep.id)
             } catch (error) {
                 Pop.error(error)
             }
