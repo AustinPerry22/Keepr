@@ -19,9 +19,20 @@
                 <p>{{ keep.description }}</p>
             </section>
             <section class="row">
-                <div class="col-6">
-                    <!-- TODO dropdown and save -->
-                    dropdown and save
+                <div v-if="accountId" class="col-6">
+                    <div v-if="inMyVault">
+                        <button>remove</button>
+                    </div>
+                    <div v-else>
+                        <div v-if="accountId" class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Add to Vault
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li v-for="vault in vaults" :key="vault.id" @click="addKeepToVault(vault.id)"><a class="dropdown-item selectable">{{ vault.name }}</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-6 d-flex">
                     <img @click="goToProfile()" :src="keep.creator.picture" alt="" class="profile-pic selectable" data-bs-toggle="modal" data-bs-target="#active-keep">
@@ -45,9 +56,17 @@ export default {
     setup(){
         const route = useRoute()
     return { 
+        route,
         accountId: computed(()=> AppState.account.id),
         keep: computed(()=> AppState.activeKeep),
+        vaults: computed(()=> AppState.myVaults),
         keepImg: computed(()=> `url('${AppState.activeKeep.img}')`),
+        inMyVault: computed(()=>
+        {
+            if(!route.params.vaultId) return false
+            if(AppState.account.id != AppState.activeVault.creatorId) return false
+            return true
+        }),
         goToProfile(){
             if(this.accountId == this.keep.creatorId)
             {
@@ -56,6 +75,15 @@ export default {
             else
             {
                 router.push({name: 'Profile', params: {profileId: this.keep.creatorId}})
+            }
+        },
+        async addKeepToVault(vaultId)
+        {
+            try {
+                await keepsService.addKeepToVault(vaultId, this.keep.id)
+                Pop.success("Added The Keep To Your Vault")
+            } catch (error) {
+                Pop.error(error)
             }
         },
         async deleteKeep(){

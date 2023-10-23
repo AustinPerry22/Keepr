@@ -1,5 +1,5 @@
 import { AppState } from "../AppState"
-import { Keep } from "../models/Keep"
+import { Keep, KeepInVault } from "../models/Keep"
 import { logger } from "../utils/Logger"
 import { api } from "./AxiosService"
 
@@ -24,7 +24,7 @@ class KeepsService
     {
         AppState.vaultKeeps = []
         const res = await api.get(`api/vaults/${vaultId}/keeps`)
-        AppState.vaultKeeps = res.data.map(keep=> new Keep(keep))
+        AppState.vaultKeeps = res.data.map(keep=> new KeepInVault(keep))
     }
 
     async getKeepById(keepId)
@@ -40,6 +40,11 @@ class KeepsService
         AppState.activeKeep = new Keep(res.data)
         if(route == "Home") AppState.allKeeps.push(AppState.activeKeep)
         if(route == "Account") AppState.myKeeps.push(AppState.activeKeep)
+    }
+
+    async addKeepToVault(vaultId, keepId)
+    {
+        const res = await api.post('api/vaultkeeps', {vaultId: vaultId, keepId: keepId})
     }
 
     async deleteKeep(keepId, route = null)

@@ -10,13 +10,13 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
-import { Keep } from '../models/Keep';
+import { Keep, KeepInVault } from '../models/Keep';
 import { keepsService } from '../services/KeepsService';
 import { Modal } from 'bootstrap';
 import Pop from '../utils/Pop';
 import { router } from '../router';
 export default {
-    props: { keep: { type: Keep, required: true } },
+    props: { keep: { type: Keep }, vaultKeep: {type: KeepInVault} },
     setup(props) {
         return {
             accountId: computed(()=> AppState.account.id),

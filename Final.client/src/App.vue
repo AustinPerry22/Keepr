@@ -35,9 +35,23 @@ import KeepDetails from './components/KeepDetails.vue'
 import KeepForm from './components/KeepForm.vue'
 import AccountForm from './components/AccountForm.vue'
 import VaultForm from './components/VaultForm.vue'
+import Pop from './utils/Pop'
+import { vaultsService } from './services/VaultsService'
+import { onAuthLoaded } from '@bcwdev/auth0provider-client'
 
 export default {
   setup() {
+    onAuthLoaded(()=>
+    {
+      getMyVaults()
+    })
+    async function getMyVaults(){
+      try {
+        vaultsService.getMyVaults()
+      } catch (error) {
+        Pop.error(error)
+      }
+    }
     return {
       appState: computed(() => AppState)
     }
