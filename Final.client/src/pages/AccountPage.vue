@@ -9,6 +9,9 @@
           <div class="col-12 text-center">
               <h2><b>{{ account.name }}</b></h2>
               <h6>{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</h6>
+              <div>
+                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#edit-account">Edit Account</button>
+              </div>
           </div>
       </section>
       <section class="row justify-content-center">
