@@ -92,8 +92,11 @@ export default {
         async removeKeepFromVault()
         {
             try {
-                Modal.getOrCreateInstance('#active-keep').hide()
-                await vaultsService.removeKeepFromVault(this.keep.id)
+                if(await Pop.confirm("Are you sure you want to delete this keep?"))
+                {
+                    Modal.getOrCreateInstance('#active-keep').hide()
+                    await vaultsService.removeKeepFromVault(this.keep.id)
+                }
             } catch (error) {
                 Pop.error(error)
             }
@@ -145,5 +148,11 @@ p{
     width: 6dvh;
     border-radius: 5rem;
     filter: drop-shadow(.15rem 0.15rem .1rem rgba(0, 0, 0, 0.397))
+}
+@media screen and (max-width: 768px){
+    .bg-keep-img
+    {
+        height: 50dvh;
+    }
 }
 </style>

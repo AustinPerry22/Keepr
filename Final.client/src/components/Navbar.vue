@@ -19,7 +19,7 @@
       </div>
       <div class="col-3 col-md-4 text-center">
         <section class="row justify-content-end">
-          <div class="col-9 col-md-3 mt-2">
+          <div class="col-12 col-md-3 mt-2">
             <Login/>
           </div>
         </section>
@@ -47,11 +47,6 @@ export default {
   border-bottom: solid rgba(65, 60, 60, 0.788) .5dvh;
 }
 .logo{
-  height: 6dvh;
-}
-@media screen and (max-width: 768px){
- .logo{
   height: 9.5dvh;
- }
 }
 </style>

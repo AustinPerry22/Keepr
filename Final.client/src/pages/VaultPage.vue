@@ -100,9 +100,9 @@ export default {
     background-image: v-bind(vaultImg);
     background-position: center;
     background-size: cover;
-    height: 25dvh;
+    height: 40dvh;
     border-radius: 1rem;
-    h2,h6{
+    h2,h4{
         color: white;
         filter: drop-shadow(.25rem 0.25rem .1rem rgba(0, 0, 0, 0.397))
     }

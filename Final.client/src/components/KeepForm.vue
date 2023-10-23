@@ -14,7 +14,7 @@
                 <textarea v-model="keepData.description" type="text" class="form-control" maxlength="1000" rows="15" required></textarea>
             </div>
             <div class="col-4 text-center mt-3">
-                <button class="btn btn-success" type="button" title="Create The Keep">Create Keep</button>
+                <button class="btn btn-success" type="submit" title="Create The Keep">Create Keep</button>
             </div>
         </section>
     </form>
