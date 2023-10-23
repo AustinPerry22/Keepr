@@ -6,6 +6,11 @@
                 <h6>by {{ vault.creator.name }}</h6>
             </div>
         </section>
+        <section v-if="vault.creatorId == accountId" class="row justify-content-end">
+            <div class="col-3 text-end">
+                <button @click="deleteVault()" class="btn btn-danger">Delete Vault</button>
+            </div>
+        </section>
         <section class="row justify-content-center">
             <div class="col-3 text-center">
                 <h5 v-if="keeps.length == 0">No Keeps Yet</h5>
@@ -38,6 +43,7 @@ export default {
     setup(){
         const route = useRoute();
         onMounted(()=>{
+            AppState.activeVault = {}
             getVaultById();
             getVaultKeeps()
         })
@@ -59,9 +65,24 @@ export default {
             }
         }
     return { 
+        accountId: computed(()=> AppState.account.id),
         vault: computed(()=> AppState.activeVault),
         keeps: computed(()=> AppState.vaultKeeps),
-        vaultImg: computed(()=> `url('${AppState.activeVault.img}')`)
+        vaultImg: computed(()=> `url('${AppState.activeVault.img}')`),
+
+        async deleteVault()
+        {
+            try {
+                if(await Pop.confirm("Are you sure you want to delete this vault"))
+                {
+                    await vaultsService.deleteVault()
+                    router.push({name: 'Home'})
+                    Pop.success("Vault Deleted")
+                }
+            } catch (error) {
+                Pop.error(error)
+            }
+        }
      }
     }
 };
