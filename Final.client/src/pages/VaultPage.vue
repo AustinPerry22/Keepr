@@ -33,19 +33,25 @@
 
 <script>
 import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
+import { computed, watchEffect} from 'vue';
 import Pop from '../utils/Pop';
 import { vaultsService } from '../services/VaultsService';
 import { useRoute } from 'vue-router';
 import { keepsService } from '../services/KeepsService';
 import { router } from '../router';
+import { onAuthLoaded } from '@bcwdev/auth0provider-client';
 export default {
     setup(){
         const route = useRoute();
-        onMounted(()=>{
+        onAuthLoaded(()=>{
             AppState.activeVault = {}
             getVaultById();
             getVaultKeeps()
+        })
+        watchEffect(()=>
+        {
+            route.params.vaultId,
+            AppState.vaultKeeps = []
         })
         async function getVaultById()
         {
