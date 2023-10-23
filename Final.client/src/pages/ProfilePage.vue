@@ -14,9 +14,9 @@
         <section class="row justify-content-center">
             <div class="col-10">
                 <h3>Vaults</h3>
-                <section class="row">
-                    <div v-for="vault in vaults" :key="vault.id" class="col-3">
-                        {{ vault.name }}
+                <section class="row justify-content-center">
+                    <div v-for="vault in vaults" :key="vault.id" class="col-2 g-3">
+                        <VaultCard :vault="vault"/>
                     </div>
                 </section>
             </div>
@@ -45,6 +45,7 @@ import Pop from '../utils/Pop';
 import { keepsService } from '../services/KeepsService';
 import { logger } from '../utils/Logger';
 import KeepCard from '../components/KeepCard.vue';
+import VaultCard from '../components/VaultCard.vue';
 
 export default {
     setup() {
@@ -84,7 +85,8 @@ export default {
             keeps: computed(() => AppState.profileKeeps),
             coverImg: computed(() => `url('${AppState.activeProfile.coverImg}')`)
         };
-    }
+    },
+    components: { VaultCard }
 };
 </script>
 
