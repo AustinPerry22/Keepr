@@ -33,6 +33,7 @@ import Pop from '../utils/Pop';
 import { vaultsService } from '../services/VaultsService';
 import { useRoute } from 'vue-router';
 import { keepsService } from '../services/KeepsService';
+import { router } from '../router';
 export default {
     setup(){
         const route = useRoute();
@@ -46,6 +47,7 @@ export default {
                 await vaultsService.getVaultById(route.params.vaultId)
             } catch (error) {
                 Pop.error(error)
+                router.push({name: 'Home'})
             }
         }
         async function getVaultKeeps()

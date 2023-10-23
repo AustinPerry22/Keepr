@@ -21,9 +21,7 @@
                     dropdown and save
                 </div>
                 <div class="col-6 d-flex">
-                    <router-link :to="{name: 'Profile', params: {profileId: keep.creator.id}}">
-                        <img :src="keep.creator.picture" alt="" class="profile-pic" data-bs-toggle="modal" data-bs-target="#active-keep">
-                    </router-link>
+                    <img @click="goToProfile()" :src="keep.creator.picture" alt="" class="profile-pic selectable" data-bs-toggle="modal" data-bs-target="#active-keep">
                     <p class="pt-3">{{ keep.creator.name }}</p>
                 </div>
             </section>
@@ -35,11 +33,23 @@
 <script>
 import { AppState } from '../AppState';
 import { computed, reactive, onMounted } from 'vue';
+import { router } from '../router';
 export default {
     setup(){
     return { 
+        accountId: computed(()=> AppState.account.id),
         keep: computed(()=> AppState.activeKeep),
-        keepImg: computed(()=> `url('${AppState.activeKeep.img}')`)
+        keepImg: computed(()=> `url('${AppState.activeKeep.img}')`),
+        goToProfile(){
+            if(this.accountId == this.keep.creatorId)
+            {
+                router.push({name: 'Account'})
+            } 
+            else
+            {
+                router.push({name: 'Profile', params: {profileId: this.keep.creatorId}})
+            }
+        }
      }
     }
 };

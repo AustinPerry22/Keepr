@@ -1,10 +1,9 @@
 <template>
     <img @click="openKeep(keep.id)" :src="keep.img" alt="" class="img-fluid cover-img selectable">
     <h5 class="title">{{ keep.name }}</h5>
-    <router-link v-if="keep.creator" :to="{name: 'Profile', params: {profileId: keep.creator.id}}">
-        <img :src="keep.creator.picture" alt="" class="profile-pic">
-    </router-link>
-    
+    <div v-if="keep.creator" @click="goToProfile()">
+        <img :src="keep.creator.picture" alt="" class="profile-pic selectable">
+    </div>
 </template>
 
 
@@ -15,10 +14,13 @@ import { Keep } from '../models/Keep';
 import { keepsService } from '../services/KeepsService';
 import { Modal } from 'bootstrap';
 import Pop from '../utils/Pop';
+import { router } from '../router';
+import { Account } from '../models/Account';
 export default {
     props: { keep: { type: Keep, required: true } },
-    setup() {
+    setup(props) {
         return {
+            accountId: computed(()=> AppState.account.id),
             async openKeep(keepId) {
                 try {
                     AppState.activeKeep = {};
@@ -28,7 +30,18 @@ export default {
                 catch (error) {
                     Pop.error(error);
                 }
+            },
+            goToProfile(){
+                if(this.accountId == props.keep.creatorId)
+                {
+                    router.push({name: 'Account'})
+                } 
+                else{
+                    router.push({name: 'Profile', params: {profileId: props.keep.creatorId}})
+                }
+                    
             }
+
         };
     },
 };

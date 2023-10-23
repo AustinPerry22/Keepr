@@ -83,7 +83,7 @@ export default {
             profile: computed(() => AppState.activeProfile),
             vaults: computed(() => AppState.activeVaults),
             keeps: computed(() => AppState.keeps),
-            coverImg: computed(() => `url('${AppState.activeProfile.coverImg}')`)
+            coverImg: computed(() => `url('${AppState.activeProfile.coverImg}')`),
         };
     },
     components: { VaultCard }
