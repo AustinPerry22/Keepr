@@ -16,7 +16,7 @@
   </ModalWrapper>
   <ModalWrapper id="create-vault">
       <template #body>
-        vault make
+        <VaultForm/>
       </template>
   </ModalWrapper>
   <ModalWrapper id="edit-account">
@@ -34,6 +34,7 @@ import Navbar from './components/Navbar.vue'
 import KeepDetails from './components/KeepDetails.vue'
 import KeepForm from './components/KeepForm.vue'
 import AccountForm from './components/AccountForm.vue'
+import VaultForm from './components/VaultForm.vue'
 
 export default {
   setup() {
@@ -41,7 +42,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, KeepDetails, KeepForm, AccountForm }
+  components: { Navbar, KeepDetails, KeepForm, AccountForm, VaultForm }
 }
 </script>
 <style lang="scss">

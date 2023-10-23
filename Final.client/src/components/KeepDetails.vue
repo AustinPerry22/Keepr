@@ -91,6 +91,7 @@ export default {
 
 .profile-pic{
     height: 6dvh;
+    width: 6dvh;
     border-radius: 5rem;
     filter: drop-shadow(.15rem 0.15rem .1rem rgba(0, 0, 0, 0.397))
 }
