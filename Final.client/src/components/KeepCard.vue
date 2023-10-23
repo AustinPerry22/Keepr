@@ -1,8 +1,8 @@
 <template>
-    <img @click="openKeep(keep.id)" :src="keep.img" alt="" class="img-fluid cover-img selectable">
+    <img @click="openKeep(keep.id)" :src="keep.img" :alt="`picture for ${keep.name} keep`" class="img-fluid cover-img selectable" type="button" title="open the keep details">
     <h5 class="title">{{ keep.name }}</h5>
-    <div v-if="keep.creator" @click="goToProfile()">
-        <img :src="keep.creator.picture" alt="" class="profile-pic selectable">
+    <div v-if="keep.creator" @click="goToProfile()" type="button" :title="`go to ${keep.creator.name}'s profile'`">
+        <img :src="keep.creator.picture" :alt="`profile picture of ${keep.creator.name}`" class="profile-pic selectable">
     </div>
 </template>
 

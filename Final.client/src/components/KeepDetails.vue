@@ -11,7 +11,7 @@
                     <p><i class="mdi mdi-alpha-k-box-outline"></i> {{ keep.kept }}</p>
                 </div>
                 <div v-if="keep.creatorId==accountId" class="col-6 text-end">
-                    <button @click="deleteKeep()" class="btn btn-danger">Delete Keep</button>
+                    <button @click="deleteKeep()" type="button" title="delete the keep" class="btn btn-danger">Delete Keep</button>
                 </div>
             </section>
             <section class="row">
@@ -21,21 +21,23 @@
             <section class="row justify-content-between">
                 <div v-if="accountId" class="col-12 col-md-6 text-md-start text-center">
                     <div v-if="inMyVault">
-                        <button @click="removeKeepFromVault()" class="btn btn-danger">Remove</button>
+                        <button @click="removeKeepFromVault()" type="button" title="remove the keep from your vault" class="btn btn-danger">Remove</button>
                     </div>
                     <div v-else>
-                        <div v-if="accountId" class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div v-if="accountId" class="dropup">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" title="select a vault to add the keep to" data-bs-toggle="dropdown" aria-expanded="false">
                                 Add to Vault
                             </button>
                             <ul class="dropdown-menu">
-                                <li v-for="vault in vaults" :key="vault.id" @click="addKeepToVault(vault.id)"><a class="dropdown-item selectable">{{ vault.name }}</a></li>
+                                <li v-for="vault in vaults" :key="vault.id">
+                                    <button @click="addKeepToVault(vault.id)" type="button" :title="`add the keep to ${vault.name}`" class="dropdown-item">{{ vault.name }}</button>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 d-flex text-center">
-                    <img @click="goToProfile()" :src="keep.creator.picture" alt="" class="profile-pic selectable" data-bs-toggle="modal" data-bs-target="#active-keep">
+                    <img @click="goToProfile()" :src="keep.creator.picture" :alt="`picture of ${keep.creator.name}`" class="profile-pic selectable" type="button" data-bs-toggle="modal" data-bs-target="#active-keep">
                     <p class="pt-3">{{ keep.creator.name }}</p>
                 </div>
             </section>
@@ -128,6 +130,14 @@ p{
     background-position: center;
     background-size: cover;
     border-radius: .5rem;
+    alt: "Keep Picture";
+}
+
+.dropdown-menu
+{
+    max-height: 50dvh;
+    overflow-y: scroll;
+    
 }
 
 .profile-pic{

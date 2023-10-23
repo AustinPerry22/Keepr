@@ -2,15 +2,15 @@
   <div class="container-fluid">
       <section class="row justify-content-center position-relative">
           <div class="col-10 col-md-8 bg-cover text-center">
-              <img :src="account.picture" alt="" class="profile-pic">
+              <img :src="account.picture" alt="Your profile picture" class="profile-pic">
           </div>
       </section>
       <section class="row mt-5 pt-3">
           <div class="col-12 text-center">
               <h2><b>{{ account.name }}</b></h2>
-              <h6>{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</h6>
+              <h4>{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</h4>
               <div>
-                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#edit-account">Edit Account</button>
+                <button class="btn btn-info" type="button" title="open the edit form" data-bs-toggle="modal" data-bs-target="#edit-account">Edit Account</button>
               </div>
           </div>
       </section>

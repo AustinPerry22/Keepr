@@ -18,7 +18,7 @@
                 <input v-model="vaultData.isPrivate" type="checkbox" name="isPrivate" default="unchecked">
             </div>
             <div class="col-4 text-center mt-3">
-                <button class="btn btn-success">Create Vault</button>
+                <button class="btn btn-success" type="button" title="Create the vault">Create Vault</button>
             </div>
         </section>
     </form>

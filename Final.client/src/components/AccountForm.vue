@@ -14,7 +14,7 @@
                 <input v-model="accountData.coverImg" type="url" class="form-control" max-length="1000">
             </div>
             <div class="col-4 text-center mt-3">
-                <button class="btn btn-success">Save Changes</button>
+                <button title="save the changes to your account" type="button" class="btn btn-success">Save Changes</button>
             </div>
         </section>
     </form>

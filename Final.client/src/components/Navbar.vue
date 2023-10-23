@@ -1,19 +1,19 @@
 <template>
   <div class="container-fluid">
-    <section class="row bottom-border mb--2 justify-content-between justify-content-md-start">
+    <section class="row bottom-border mb-2 justify-content-between justify-content-md-start">
       <div class="col-3 col-md-4 d-flex">
         <div v-if="user.isAuthenticated" class="dropdown mt-2">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn btn-secondary dropdown-toggle" type="button" title="open the create dropdown" data-bs-toggle="dropdown" aria-expanded="false">
             Create
           </button>
           <ul class="dropdown-menu">
-            <li data-bs-toggle="modal" data-bs-target="#create-keep"><a class="dropdown-item selectable">New Keep</a></li>
-            <li data-bs-toggle="modal" data-bs-target="#create-vault"><a class="dropdown-item selectable">New Vault</a></li>
+            <li data-bs-toggle="modal" data-bs-target="#create-keep"><button class="dropdown-item selectable" type="button" title="Open a form to create a keep">New Keep</button></li>
+            <li data-bs-toggle="modal" data-bs-target="#create-vault"><button class="dropdown-item selectable" type="button" title="Open a form to create a vault">New Vault</button></li>
           </ul>
         </div>
       </div>
       <div class="col-3 col-md-4 text-center">
-        <router-link :to="{name: 'Home'}">
+        <router-link :to="{name: 'Home'}" title="Go to the Home page">
           <img src="../assets/img/logo.png" alt="" class="logo">
         </router-link>
       </div>

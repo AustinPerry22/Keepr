@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, watchEffect } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import KeepDetails from './components/KeepDetails.vue'
@@ -37,17 +37,20 @@ import AccountForm from './components/AccountForm.vue'
 import VaultForm from './components/VaultForm.vue'
 import Pop from './utils/Pop'
 import { vaultsService } from './services/VaultsService'
-import { onAuthLoaded } from '@bcwdev/auth0provider-client'
 
 export default {
   setup() {
-    onAuthLoaded(()=>
+    watchEffect(()=>
     {
+      AppState.account
       getMyVaults()
     })
     async function getMyVaults(){
       try {
-        vaultsService.getMyVaults()
+        if(AppState.account.id)
+        {
+          vaultsService.getMyVaults()
+        }
       } catch (error) {
         Pop.error(error)
       }

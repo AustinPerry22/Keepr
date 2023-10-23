@@ -2,13 +2,13 @@
     <div class="container-fluid">
         <section class="row justify-content-center position-relative mt-2">
             <div class="col-10 col-md-8 bg-cover text-center">
-                <img :src="profile.picture" alt="" class="profile-pic">
+                <img :src="profile.picture" :alt="`picture of ${profile.name}`" class="profile-pic">
             </div>
         </section>
         <section class="row mt-5 pt-3">
             <div class="col-12 text-center">
                 <h2><b>{{ profile.name }}</b></h2>
-                <h6>{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</h6>
+                <h4>{{ vaults.length }} Vaults | {{ keeps.length }} Keeps</h4>
             </div>
         </section>
         <section class="row justify-content-center">
