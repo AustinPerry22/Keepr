@@ -16,7 +16,7 @@
       </section>
       <section class="row justify-content-center">
           <div class="col-10">
-              <h3>Vaults</h3>
+              <h3>My Vaults</h3>
               <section class="row justify-content-center">
                   <div v-for="vault in vaults" :key="vault.id" class="col-6 col-md-2 g-3">
                       <VaultCard :vault="vault"/>
@@ -26,7 +26,7 @@
       </section>
       <section class="row justify-content-center mt-5">
           <div class="col-10">
-              <h3>Keeps</h3>
+              <h3>My Keeps</h3>
               <div class="masonry-container">
                   <div v-for="keep in keeps" :key="keep.id" class="position-relative">
                       <KeepCard :keep="keep"/>
