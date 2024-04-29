@@ -1,14 +1,14 @@
-
 {
   "folders": [
     {
-      "path": "Final.client",
+      "path": "client",
       "name": "client"
     },
     {
-      "path": "Final",
+      "path": "server",
       "name": "server"
-    },{"path":".github/workflows", "name":"workflows"}
+    },
+    { "path": ".github/workflows", "name": "workflows" }
   ],
   "settings": {
     "editor.suggestSelection": "first",
@@ -33,7 +33,7 @@
     "eslint.lintTask.enable": true,
     "eslint.codeActionsOnSave.mode": "all",
     "editor.codeActionsOnSave": {
-      "source.fixAll": true
+      "source.fixAll": "explicit"
     }
   }
 }
