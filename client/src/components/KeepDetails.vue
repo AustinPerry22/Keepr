@@ -149,6 +149,9 @@ p{
     border-radius: 5rem;
     filter: drop-shadow(.15rem 0.15rem .1rem rgba(0, 0, 0, 0.397))
 }
+.profile-pic:hover{
+    transform: scale(1.1);
+}
 @media screen and (max-width: 768px){
     .bg-keep-img
     {

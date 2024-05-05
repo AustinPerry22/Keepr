@@ -27,6 +27,13 @@
                 </div>
             </div>
         </section>
+        <section v-if="vault.creatorId == accountId" class="row justify-content-center">
+            <div class="col-6 text-center">
+                <router-link :to="{name: 'Home'}" title="Add Keeps">
+                    <button class="btn btn-success w-50">Add Keeps</button>
+                </router-link>
+            </div>
+        </section>
     </div>
 </template>
 
