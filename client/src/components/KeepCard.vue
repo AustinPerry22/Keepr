@@ -70,4 +70,8 @@ export default {
     filter: drop-shadow(.25rem 0.25rem .1rem rgba(0, 0, 0, 0.397))
 }
 
+.profile-pic:hover{
+    transform: scale(1.1);
+}
+
 </style>
